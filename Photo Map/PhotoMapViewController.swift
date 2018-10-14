@@ -26,12 +26,10 @@ class PhotoMapViewController: UIViewController,UIImagePickerControllerDelegate, 
     @IBOutlet weak var mapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+//        mapView.delegate = self
         
-        mapView.delegate = self
-        
-        //one degree of latitude is approximately 111 kilometers (69 miles) at all times.
-        
-        
+    
         let sfRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(37.783333, -122.416667),
                                               MKCoordinateSpanMake(0.1, 0.1))
         mapView.setRegion(sfRegion, animated: false)
@@ -39,7 +37,6 @@ class PhotoMapViewController: UIViewController,UIImagePickerControllerDelegate, 
         
         
         
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
@@ -66,9 +63,7 @@ class PhotoMapViewController: UIViewController,UIImagePickerControllerDelegate, 
         let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
         myImage = editedImage
-        // Do something with the images (based on your use case)
-        
-        // Dismiss UIImagePickerController to go back to your original view controller
+
         self.dismiss(animated: true, completion: {
             self.performSegue(withIdentifier: "tagSegue", sender: nil)
         })
@@ -116,15 +111,9 @@ class PhotoMapViewController: UIViewController,UIImagePickerControllerDelegate, 
         UIGraphicsEndImageContext()
         
         let imageView = annotationView?.leftCalloutAccessoryView as! UIImageView
-        //imageView.image = UIImage(named: "camera")
         imageView.image = thumbnail
         return annotationView
     }
-    
-    //    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-    //        print("testal")
-    //
-    //    }
-    
+
 }
 
